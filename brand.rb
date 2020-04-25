@@ -6,7 +6,8 @@ class Brand
         @name = name
         @address = address
         @contact_number = contact_number
-        @ebike = []
+        @ebikes = []
     end
+
 
 end
