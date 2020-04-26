@@ -3,30 +3,34 @@ require_relative("../db/sql_runner")
 class Ebike 
 
     attr_reader :id
-    attr_accessor :name, :brand_id, :retail_price, :cost
+    attr_accessor :name, :retail_price, :cost, :type_id, :brand_id
+
 
     def initialize(options)
         @id = options['id'].to_i if options['id']
         @name = options['name']
-        @brand_id = options['brand_id'].to_i
         @retail_price = options['retail_price'].to_i
         @cost = options['cost'].to_i
+        @type_id = options['type_id']
+        @brand_id = options['brand_id']
+        
     end 
 
     def save()
         sql = "INSERT INTO ebikes 
         (
             name, 
-            brand_id, 
             retail_price, 
-            cost
+            cost,
+            type_id,
+            brand_id
         ) 
         VALUES 
         (
-            $1, $2, $3, $4
+            $1, $2, $3, $4, $5
         )
         RETURNING id"
-        values = [@name, @brand_id, @retail_price, @cost]
+        values = [@name, @retail_price, @cost, @type_id, @brand_id]
         ebike = SqlRunner.run(sql,values).first
         @id = ebike['id'].to_i
     end
