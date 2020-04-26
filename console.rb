@@ -47,7 +47,7 @@ ebike2 = Ebike.new({
     'retail_price' => 7300, 
     'cost' => 6400, 
     'type_id' => type2.id, 
-    'brand' => brand2.id})
+    'brand_id' => brand2.id})
 ebike2.save()
 
 

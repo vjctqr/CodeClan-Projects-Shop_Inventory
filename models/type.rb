@@ -7,8 +7,8 @@ class Type
 
     def initialize(options)
         @id = options['id'].to_i if options['id']
-        @name = options['name'].to_i
-        @motor = options['motor'].to_i
+        @name = options['name']
+        @motor = options['motor']
     end
 
     def save()

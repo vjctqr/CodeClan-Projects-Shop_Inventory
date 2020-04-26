@@ -47,4 +47,22 @@ class Ebike
         SqlRunner.run(sql)
     end
 
+    def type()
+        sql = "SELECT * FROM types
+        WHERE id = $1"
+        values = [@type_id]
+        type = SqlRunner.run(sql, values).first
+        return Type.new(type)
+    end
+
+    def brand()
+        sql = "SELECT * FROM brands
+        WHERE id = $1"
+        values = [@brand_id]
+        brand = SqlRunner.run(sql, values).first
+        return Brand.new(brand)
+    end
+
+
+
 end
