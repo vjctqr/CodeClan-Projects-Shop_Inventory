@@ -8,7 +8,7 @@ class Ebike
     def initialize(options)
         @id = options['id'].to_i if options['id']
         @name = options['name']
-        @brand_id = options['brand'].to_i
+        @brand_id = options['brand_id'].to_i
         @retail_price = options['retail_price'].to_i
         @cost = options['cost'].to_i
     end 
@@ -38,8 +38,8 @@ class Ebike
         return result
     end
 
-    def self.delete.all()
-        sql = "DELETE * FROM ebikes"
+    def self.delete_all()
+        sql = "DELETE FROM ebikes"
         SqlRunner.run(sql)
     end
 

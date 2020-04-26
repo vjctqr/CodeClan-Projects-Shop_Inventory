@@ -37,7 +37,7 @@ class Brand
     end
 
     def self.delete_all
-        sql = "DELETE * FROM brands"
+        sql = "DELETE FROM brands"
         SqlRunner.run(sql)
     end
 

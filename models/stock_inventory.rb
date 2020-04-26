@@ -25,8 +25,8 @@ class StockInventory
         return result
     end
 
-    def self.delete.all()
-        sql = "DELETE * FROM stock_inventory"
+    def self.delete_all()
+        sql = "DELETE FROM stock_inventory"
         SqlRunner.run(sql)
     end
 
