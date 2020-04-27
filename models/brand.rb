@@ -29,16 +29,22 @@ class Brand
         @id = brand['id'].to_i
     end
 
+    #refactored
     def self.all()
         sql = "SELECT * FROM brands"
         brands = SqlRunner.run(sql)
-        result = brands.map { |brand| Brand.new( brand ) }
-        return result
+        return Brand.map_items(brands)
     end
 
     def self.delete_all
         sql = "DELETE FROM brands"
         SqlRunner.run(sql)
+    end
+
+    #refactoring with class method map.
+    def self.map_items(brand_data)
+        result = brand_data.map { |brand| Brand.new(brand)}
+        return result
     end
 
 

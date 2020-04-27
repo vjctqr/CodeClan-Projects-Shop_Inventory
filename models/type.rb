@@ -18,17 +18,24 @@ class Type
         @id = type['id'].to_i
     end
 
+    # refactored
     def self.all()
         sql = "SELECT * FROM types"
         types = SqlRunner.run(sql)
-        result = types.map { |type| Type.new( type ) }
-        return result
+        return Type.map_items(types)
     end
 
     def self.delete_all()
         sql = "DELETE FROM types"
         SqlRunner.run(sql)
     end
+
+    # refactoring with class method map
+    def self.map_items(type_data)
+        result = type_data.map { |type| Type.new(type)}
+        return result
+    end
+
 
 
 end

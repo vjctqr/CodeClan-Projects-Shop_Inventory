@@ -35,11 +35,11 @@ class Ebike
         @id = ebike['id'].to_i
     end
 
+    #refactored
     def self.all()
         sql = "SELECT * FROM ebikes"
         ebikes = SqlRunner.run(sql)
-        result = ebikes.map { |ebike| Ebike.new( ebike ) }
-        return result
+        return Ebike.map_items(ebikes)
     end
 
     def self.delete_all()
@@ -61,6 +61,12 @@ class Ebike
         values = [@brand_id]
         brand = SqlRunner.run(sql, values).first
         return Brand.new(brand)
+    end
+
+    #refactoring with class method map.
+    def self.map_items(ebike_data)
+        result = ebike_data.map { |ebike| Ebike.new(ebike)}
+        return result
     end
 
 
