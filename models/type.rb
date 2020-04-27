@@ -30,7 +30,7 @@ class Type
         SqlRunner.run(sql)
     end
 
-    # refactoring with class method map
+    # refactoring with class method map.
     def self.map_items(type_data)
         result = type_data.map { |type| Type.new(type)}
         return result
