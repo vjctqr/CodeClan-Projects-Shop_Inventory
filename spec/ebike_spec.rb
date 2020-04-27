@@ -4,7 +4,7 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 require_relative("../ebike")
 
-class TestPet < Minitest::Test
+class TestEbike < Minitest::Test
     def setup
         @ebike1 = Ebike.new("Tern GSD", "Tern", 3995, 3295 )
     end

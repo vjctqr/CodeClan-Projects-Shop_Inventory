@@ -1,6 +1,6 @@
 require_relative('models/ebike')
-require_relative('models/brand')
-require_relative('models/type')
+# require_relative('models/brand')
+# require_relative('models/type')
 
 brand1 = Brand.new({
     'name' => 'Tern', 

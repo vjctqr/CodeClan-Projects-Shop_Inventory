@@ -4,9 +4,9 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 require_relative('../ebike')
 require_relative('../brand')
-require_relative('../stock_inventory')
+require_relative('../type')
 
-class StockInventoryTest < MiniTest::Test
+class TypeTest < MiniTest::Test
 
     def setup()
         @ebike1 = Ebike.new("Tern GSD", "Tern", 3995, 3295)
