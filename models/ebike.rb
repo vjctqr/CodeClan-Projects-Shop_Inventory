@@ -11,7 +11,7 @@ class Ebike
         @retail_price = options['retail_price'].to_i
         @cost = options['cost'].to_i
         @type_id = options['type_id'].to_i
-        @brand_id = options['brand_id']to_i
+        @brand_id = options['brand_id'].to_i
         @stock_count = options["stock_count"].to_i    
     end 
 

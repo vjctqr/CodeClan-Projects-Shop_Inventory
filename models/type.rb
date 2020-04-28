@@ -27,7 +27,7 @@ class Type
 
     def update()
         sql = "UPDATE types SET (name, motor) = ($1, $2) WHERE id = $3;"
-        values = [@name, @motor. @id]
+        values = [@name, @motor, @id]
         SqlRunner.run(sql, values)
     end
 
@@ -55,7 +55,7 @@ class Type
 
     def self.find(id)
         sql ="SELECT * FROM types WHERE id = $1"
-        values [id]
+        values = [id]
         type = SqlRunner.run(sql, values).first
         return Type.new(type) if type
     end
