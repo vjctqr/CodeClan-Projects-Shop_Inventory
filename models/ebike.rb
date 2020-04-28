@@ -11,14 +11,10 @@ class Ebike
         @name = options['name']
         @retail_price = options['retail_price'].to_i
         @cost = options['cost'].to_i
-        @type_id = options['type_id']
-        @brand_id = options['brand_id']
+        @type_id = options['type_id'].to_i
+        @brand_id = options['brand_id']to_i
         
     end 
-
-    def pretty_name()
-        return "#{@name}"
-    end
 
     def save()
         sql = "INSERT INTO ebikes 
@@ -39,7 +35,7 @@ class Ebike
         @id = ebike['id'].to_i
     end
 
-    #refactored
+    #Self methods
     def self.all()
         sql = "SELECT * FROM ebikes"
         ebikes = SqlRunner.run(sql)
@@ -67,7 +63,6 @@ class Ebike
         return Brand.new(brand)
     end
 
-    #refactoring with class method map.
     def self.map_items(ebike_data)
         result = ebike_data.map { |ebike| Ebike.new(ebike)}
         return result

@@ -1,7 +1,8 @@
 require('sinatra')
 require('sinatra/contrib/all') if development?
-# require( 'pry' )
-require_relative('./models/ebike')
+require_relative('../models/ebike')
+# require_relative('../models/type')
+# require_relative('../models/brand')
 also_reload('./models/*')
 
 #READ
@@ -12,6 +13,10 @@ also_reload('./models/*')
  end
 
  #Show - display a single ebike.
+#  get '/ebikes/:id' do
+#    @ebike = Ebike.find(prams[:id].to_i)
+#    erb(:show)
+#  end
 
 #CREATE
  #New - display form to enter order information.

@@ -2,6 +2,11 @@ require_relative('../models/ebike')
 require_relative('../models/brand')
 require_relative('../models/type')
 
+Ebike.delete_all()
+Type.delete_all()
+Brand.delete_all()
+
+
 brand1 = Brand.new({
     'name' => 'Tern', 
     'address' => 'Taipei, Taiwan', 

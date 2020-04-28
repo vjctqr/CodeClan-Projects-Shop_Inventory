@@ -3,7 +3,6 @@ require('minitest/reporters')
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
 require_relative('../ebike')
-require_relative('../brand')
 require_relative('../type')
 
 class TypeTest < MiniTest::Test
@@ -14,14 +13,14 @@ class TypeTest < MiniTest::Test
 
         @ebikes = [@ebike1, @ebike2]
 
-        @stock_inventory = StockInventory.new("Edinburgh eBikes", @ebikes)
+        @type = Type.new("Edinburgh eBikes", @ebikes)
     end
 
-    def test_stock_inventory_has_name()
+    def type_has_name()
       assert_equal("Edinburgh eBikes", @stock_inventory.name)
     end
 
-    def test_stock_inventory_stock_count()
+    def test_type_count()
         assert_equal(2, @stock_inventory.stock_count())
     end
 

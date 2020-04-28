@@ -9,7 +9,7 @@ class Brand
         @id = options['id'].to_i if options['id']
         @name = options['name']
         @address = options['address']
-        @contact_number = options['contact_number'].to_i
+        @contact_number = options['contact_number']
     end
 
     def save()
@@ -29,7 +29,31 @@ class Brand
         @id = brand['id'].to_i
     end
 
-    #refactored
+    def update()
+        sql ="UPDATE brands SET 
+        (name, address, contact_number) = 
+        $1, $2, $3 
+        WHERE id = $4 "
+        values = [@name, @address, @contact_number, @id]
+        SqlRunner.run(sql, values)
+    end
+
+    def delete()
+        sql = "DELETE FROM brands where id = $1"
+        values = [@id]
+        SqlRunner.run(sql, values)
+    end
+
+    def ebikes()
+        sql = "SELECT * FROM ebikes where brand_id = $1"
+        values = [@id]
+        ebike_data = SqlRunner.run(sql, values)
+        return ebike_data.map{|ebike| Ebike.new(ebike)}
+    end
+
+
+
+    #Self Method.
     def self.all()
         sql = "SELECT * FROM brands"
         brands = SqlRunner.run(sql)
@@ -41,12 +65,9 @@ class Brand
         SqlRunner.run(sql)
     end
 
-    #refactoring with class method map.
     def self.map_items(brand_data)
         result = brand_data.map { |brand| Brand.new(brand)}
         return result
     end
-
-
 
 end
