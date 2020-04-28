@@ -2,28 +2,37 @@ require('minitest/autorun')
 require('minitest/reporters')
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
-require_relative('../ebike')
 require_relative('../type')
 
 class TypeTest < MiniTest::Test
 
     def setup()
-        @ebike1 = Ebike.new("Tern GSD", "Tern", 3995, 3295)
-        @ebike2 = Ebike.new("Cube Acid Hybrid One 500", "Cube", 1999, 1200)
-
-        @ebikes = [@ebike1, @ebike2]
-
-        @type = Type.new("Edinburgh eBikes", @ebikes)
+        @type = Type.new({"name" => "Ecargo", "motor" => "Bosch Performance")
     end
 
-    def type_has_name()
-      assert_equal("Edinburgh eBikes", @stock_inventory.name)
+    def test_type_has_name()
+      assert_equal("Ecargo", @type.name)
     end
 
-    def test_type_count()
-        assert_equal(2, @stock_inventory.stock_count())
+    def test_type_has_motor()
+        assert_equal("Bosch Performance", @type.motor)
     end
 
+    def test_show_name()
+        assert_equal("Ecargo", @type.show_name)
+    end
+
+    def test_show_motor()
+        assert_equal("Bosch Perfomance", @type.show_motor)
+    end
+
+    def test_can_change_name()
+        assert_equal("Ecargo", @type.show_name)
+    end
+
+    def test_can_change_motor()
+        assert_equal("Bosch Perfomance", @type.show_motor)
+    end
 
 end
 

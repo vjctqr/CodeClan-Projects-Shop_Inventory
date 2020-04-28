@@ -5,16 +5,27 @@ Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 require_relative("../ebike")
 
 class TestEbike < Minitest::Test
+
     def setup
-        @ebike1 = Ebike.new("Tern GSD", "Tern", 3995, 3295 )
+        @ebike = Ebike.new({
+            "name" => "Tern GSD", 
+            "retail_price" => "3995", 
+            "cost" => "3295", 
+            "type_id" => "eCargo",
+            "brand_id" => "Tern", 
+            "stock_count" => "5"
+        })
     end
 
     def test_ebike_has_name()
-        assert_equal("Tern GSD", @ebike1.name)
+        assert_equal("Tern GSD", @ebike.name)
     end
 
-    def test_ebike_has_brand()
-        assert_equal("Tern", @ebike1.brand)
+    def test_ebike_has_type_id()
+        assert_equal("eCargo", @ebike.type_id)
+
+    def test_ebike_has_brand_id()
+        assert_equal("Tern", @ebike.brand_id)
     end
 
     def test_ebike_has_retail_price
@@ -24,6 +35,11 @@ class TestEbike < Minitest::Test
     def test_ebike_has_cost
         assert_equal(3295, @ebike1.cost)
     end
+
+    def test_ebike_has_stock_count()
+        assert_equal(5, @ebike.stock_count)
+    end
+
 
 end
 
