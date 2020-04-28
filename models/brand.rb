@@ -32,8 +32,8 @@ class Brand
 
     def self.all()
         sql = "SELECT * FROM brands"
-        brands = SqlRunner.run(sql)
-        return Brand.map_items(brands)
+        brands_data = SqlRunner.run(sql)
+        return Brand.map_items(brands_data)
     end
 
     def update()

@@ -3,8 +3,7 @@ require_relative("../db/sql_runner")
 class Ebike 
 
     attr_reader :id
-    attr_accessor :name, :retail_price, :cost, :type_id, :brand_id
-
+    attr_accessor :name, :retail_price, :cost, :type_id, :brand_id, :stock_count
 
     def initialize(options)
         @id = options['id'].to_i if options['id']
@@ -13,8 +12,22 @@ class Ebike
         @cost = options['cost'].to_i
         @type_id = options['type_id'].to_i
         @brand_id = options['brand_id']to_i
-        
+        @stock_count = options["stock_count"].to_i    
     end 
+
+    def type()
+        return Type.find(@type_id)
+    end
+
+    def brand()
+        return Brand.find(@brand_id)
+    end
+
+    def stock_status()
+        return "green" if @stock_count >= 5
+        return "red" if @stock_count == 0
+        return "amber"
+    end
 
     def save()
         sql = "INSERT INTO ebikes 
@@ -23,23 +36,46 @@ class Ebike
             retail_price, 
             cost,
             type_id,
-            brand_id
+            brand_id,
+            stock_count
         ) 
         VALUES 
         (
-            $1, $2, $3, $4, $5
+            $1, $2, $3, $4, $5, $6
         )
         RETURNING id"
-        values = [@name, @retail_price, @cost, @type_id, @brand_id]
+        values = [@name, @retail_price, @cost, @type_id, @brand_id, @stock_count]
         ebike = SqlRunner.run(sql,values).first
         @id = ebike['id'].to_i
     end
 
-    #Self methods
     def self.all()
         sql = "SELECT * FROM ebikes"
-        ebikes = SqlRunner.run(sql)
-        return Ebike.map_items(ebikes)
+        ebikes_data = SqlRunner.run(sql)
+        return Ebike.map_items(ebikes_data)
+    end
+
+    def update()
+        sql = "UPDATE ebikes SET (
+            name, 
+            retail_price, 
+            cost, 
+            type_id, 
+            brand_id, 
+            stock_count
+            ) = ($1, $2, $3, $4, $5, $6) WHERE id = $7;"
+        values = [@name, @retail_price, @cost, @type_id, @brand_id, @stock_count]
+        SqlRunner.run(sql, values)
+    end
+
+    def delete()
+        sql = "DELETE FROM ebikes WHERE id = $1"
+        values = [@id]
+        SqlRunner.run(sql, values)
+    end
+
+    def self.map_items(ebikes_data)
+        return ebikes_data.map { |ebike| Ebike.new(ebike)}
     end
 
     def self.delete_all()
@@ -47,27 +83,12 @@ class Ebike
         SqlRunner.run(sql)
     end
 
-    def type()
-        sql = "SELECT * FROM types
-        WHERE id = $1"
-        values = [@type_id]
-        type = SqlRunner.run(sql, values).first
-        return Type.new(type)
+    def self.find(id)
+        sql = "SELECT * FROM ebikes WHERE id = $1"
+        values = [id]
+        ebike = SqlRunner.run(sql, values).first
+        return Ebike.new(ebike) if ebike 
     end
-
-    def brand()
-        sql = "SELECT * FROM brands
-        WHERE id = $1"
-        values = [@brand_id]
-        brand = SqlRunner.run(sql, values).first
-        return Brand.new(brand)
-    end
-
-    def self.map_items(ebike_data)
-        result = ebike_data.map { |ebike| Ebike.new(ebike)}
-        return result
-    end
-
 
 
 end
