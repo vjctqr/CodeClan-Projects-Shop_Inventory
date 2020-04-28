@@ -1,4 +1,8 @@
-<h2>Index header</h2>
+<h1>Ebikes</h1>
 
-<% @ebikes.each do |ebike| %>
+<% for ebike in @ebikes %>
+<p>Name: <%= ebike.pretty_name() %></p>
+<p>Type: <%= ebike.type_id() %></p>
+<p>Brand: <%= ebike.brand_id() %></p>
+<hr />
 <% end %>

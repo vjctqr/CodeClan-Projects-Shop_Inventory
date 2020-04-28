@@ -16,6 +16,10 @@ class Ebike
         
     end 
 
+    def pretty_name()
+        return "#{@name}"
+    end
+
     def save()
         sql = "INSERT INTO ebikes 
         (
