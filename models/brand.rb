@@ -1,4 +1,5 @@
 require_relative("../db/sql_runner")
+require_relative("ebike")
 
 class Brand
 
@@ -29,11 +30,17 @@ class Brand
         @id = brand['id'].to_i
     end
 
+    def self.all()
+        sql = "SELECT * FROM brands"
+        brands = SqlRunner.run(sql)
+        return Brand.map_items(brands)
+    end
+
     def update()
-        sql ="UPDATE brands SET 
+        sql = "UPDATE brands SET 
         (name, address, contact_number) = 
         $1, $2, $3 
-        WHERE id = $4 "
+        WHERE id = $4;"
         values = [@name, @address, @contact_number, @id]
         SqlRunner.run(sql, values)
     end
@@ -45,19 +52,14 @@ class Brand
     end
 
     def ebikes()
-        sql = "SELECT * FROM ebikes where brand_id = $1"
+        sql = "SELECT * FROM ebikes WHERE brand_id = $1"
         values = [@id]
-        ebike_data = SqlRunner.run(sql, values)
-        return ebike_data.map{|ebike| Ebike.new(ebike)}
+        ebikes_data = SqlRunner.run(sql, values)
+        return Ebike.map_items(ebikes_data)
     end
 
-
-
-    #Self Method.
-    def self.all()
-        sql = "SELECT * FROM brands"
-        brands = SqlRunner.run(sql)
-        return Brand.map_items(brands)
+    def self.map_items(brands_data)
+        return brands_data.map { |brand| Brand.new(brand)}
     end
 
     def self.delete_all
@@ -65,9 +67,11 @@ class Brand
         SqlRunner.run(sql)
     end
 
-    def self.map_items(brand_data)
-        result = brand_data.map { |brand| Brand.new(brand)}
-        return result
+    def self.find(id)
+        sql = "SELECT * FROM brands WHERE id = $1"
+        values = [id]
+        brand = SqlRunner.run(sql, values).first
+        return Brand.new(brand) if brand
     end
 
 end
