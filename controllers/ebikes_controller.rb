@@ -1,8 +1,8 @@
 require('sinatra')
 require('sinatra/contrib/all') if development?
-require_relative('./models/ebike')
-require_relative('./models/type')
-require_relative('./models/brand')
+require_relative('../models/ebike')
+require_relative('../models/type')
+require_relative('../models/brand')
 also_reload('models/*')
 
 # get '/new' do
