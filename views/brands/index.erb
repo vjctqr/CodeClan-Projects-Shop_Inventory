@@ -1,17 +1,22 @@
 
 <table>
+
   <tr>
    <th>Name</th>
    <th>Address</th>
    <th>Contact_number</th>
   </tr>
-  <% @types.each do |type|%>
+
+  <% @brands.each do |type| %>
+
   <tr>
    <td>
-    <a href="/types/<%= type.id %>"><%= type.name %></a>
-    </td>
-    <td><%= type.address %></td>
-    <td><%= type.contact_number %></td>
+    <a href="/brands/<%= brand.id %>"><%= brand.name %></a>
+   </td>
+    <td><%= brand.address %></td>
+    <td><%= brand.contact_number %></td>
    </tr>
+
 <% end %>
+
 </table>

@@ -5,41 +5,50 @@ require_relative('../models/type')
 require_relative('../models/brand')
 also_reload('models/*')
 
-# get '/new' do
-#    @types = Type.all()
-#    @brands = Brand.all()
-#    erb(:'ebikes/new')
-# end
+#New
+get '/new' do
+   @types = Type.all()
+   @brands = Brand.all()
+   erb(:'ebikes/new')
+end
 
 #Index
- get '/ebikes' do
-    @ebikes = Ebike.all()
-    erb(:'ebikes/index')
+get '/ebikes' do
+   @ebikes = Ebike.all()
+  erb(:"ebikes/index")
+end
+
+#Create
+get '/ebikes' do
+  Ebike.new(params).save()
+  redirect to '/ebikes'
  end
 
  #Show
  get '/ebikes/:id' do
    @ebikes = Ebike.find(params[:id].to_i)
-   erb(:'ebikes/show')
+   erb(:ebikes/show)
  end
 
+ #Edit
+ get '/ebikes/:id/edit' do
+   @ebike = Ebike.find(params[:id].to_i)
+   @brand = Brand.all()
+   erb(:'ebikes/edit')
+ end
+
+#Update
+post '/ebikes/:id' do
+  Ebike.new(params).update()
+  redirect to '/ebikes'
+end
+
+#Delete
+post '/ebikes/:id/delete' do
+  Ebike.find(params[:id].to_i).delete()
+  redirect to '/ebikes'
+end
 
 
- #Show - display a single ebike.
-#  get '/ebikes/:id' do
-#    @ebike = Ebike.find(prams[:id].to_i)
-#    erb(:show)
-#  end
-
-#CREATE
- #New - display form to enter order information.
- #Create - submit new order details.
-
-#UPDATE
- #Edit - display form to edit details.
- #Update - submit amended details.
-
-#DELETE 
- #Delete/Destroy - remove ebike from database.
 
 
