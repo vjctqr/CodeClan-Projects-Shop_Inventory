@@ -9,7 +9,7 @@ get '/brands/new' do
 end
 
 #Create
-get '/brands' do
+post '/brands' do
     Brand.new(param).save()
     redirect to "/brands"
 end

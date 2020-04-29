@@ -7,7 +7,7 @@
    <th>Contact_number</th>
   </tr>
 
-  <% @brands.each do |type| %>
+  <% @brands.each do |brand| %>
 
   <tr>
    <td>
@@ -16,28 +16,7 @@
     <td><%= brand.address %></td>
     <td><%= brand.contact_number %></td>
    </tr>
+
+   <% end %>
 </table>
 
-<table>
- <tr>
-  <th><a>Name</a></th>
-  <th>Type</th>
-  <th>Brand</th>
-  <th>Stock</th>
-  <th>Price</th>
-  <th>Cost</th>
-  </tr>
-
-  <% @ebikes.each do |ebike| %>
-
-  <tr>
-   <td><a href="/ebikes/<%= ebike.id %> "><%= ebike.name %></a></td>
-   <td><a><%= ebike.type().name %></a></td>
-   <td><a href="/brands/<%= ebike.brand_id %>"><%= ebike.brand.name %></a></td>
-   <td><a class="<% ebike.stock_status %> center"><%= ebike.stock_count %></td>
-   <td>£<%= ebike.retail_price() %></td>
-   <td>£<%= ebike.cost() %></td>
-
-<% end %>
-
-</table>
