@@ -11,11 +11,13 @@ also_reload('models/*')
 #    erb(:'ebikes/new')
 # end
 
+#Index
  get '/ebikes' do
     @ebikes = Ebike.all()
     erb(:'ebikes/index')
  end
 
+ #Show
  get '/ebikes/:id' do
    @ebikes = Ebike.find(params[:id].to_i)
    erb(:'ebikes/show')
