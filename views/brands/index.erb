@@ -1,0 +1,17 @@
+
+<table>
+  <tr>
+   <th>Name</th>
+   <th>Address</th>
+   <th>Contact_number</th>
+  </tr>
+  <% @types.each do |type|%>
+  <tr>
+   <td>
+    <a href="/types/<%= type.id %>"><%= type.name %></a>
+    </td>
+    <td><%= type.address %></td>
+    <td><%= type.contact_number %></td>
+   </tr>
+<% end %>
+</table>
