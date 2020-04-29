@@ -14,7 +14,7 @@ CREATE TABLE brands (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255),
     address VARCHAR(255),
-    contact_number INT 
+    contact_number VARCHAR(255) 
 );
 
 CREATE TABLE ebikes (
@@ -23,6 +23,7 @@ CREATE TABLE ebikes (
     retail_price INT,
     cost INT,
     type_id INT REFERENCES types(id) ON DELETE CASCADE,
-    brand_id INT REFERENCES brands(id) ON DELETE CASCADE
+    brand_id INT REFERENCES brands(id) ON DELETE CASCADE,
+    stock_count INT
 );
 

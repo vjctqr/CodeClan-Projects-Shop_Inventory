@@ -5,11 +5,23 @@ require_relative('./models/type')
 require_relative('./models/brand')
 also_reload('models/*')
 
+# get '/new' do
+#    @types = Type.all()
+#    @brands = Brand.all()
+#    erb(:'ebikes/new')
+# end
 
  get '/ebikes' do
     @ebikes = Ebike.all()
-    erb(:index)
+    erb(:'ebikes/index')
  end
+
+ get '/ebikes/:id' do
+   @ebikes = Ebike.find(params[:id].to_i)
+   erb(:'ebikes/show')
+ end
+
+
 
  #Show - display a single ebike.
 #  get '/ebikes/:id' do
