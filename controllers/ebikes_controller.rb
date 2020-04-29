@@ -1,15 +1,15 @@
 require('sinatra')
 require('sinatra/contrib/all') if development?
-require_relative('../models/ebike')
-require_relative('../models/type')
-require_relative('../models/brand')
-also_reload('models/*')
+require_relative('../models/ebike.rb')
+require_relative('../models/type.rb')
+require_relative('../models/brand.rb')
+also_reload('../models/*')
 
 #New
 get '/new' do
    @types = Type.all()
    @brands = Brand.all()
-   erb(:'ebikes/new')
+   erb(:"ebikes/new")
 end
 
 #Index

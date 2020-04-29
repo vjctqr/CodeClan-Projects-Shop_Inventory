@@ -1,7 +1,7 @@
 require('sinatra')
 require('sinatra/contrib/all') if development?
-require_relative('../models/type')
-also_reload('models/*')
+require_relative('../models/type.rb')
+also_reload('../models/*')
 
 
 #New
@@ -12,13 +12,13 @@ end
 #Create
 post '/types' do
     Type.new(params).save()
-    redirect to '/types'
+    redirect to "/types"
 end
 
 #Index
 get '/types' do
     @types = Type.all()
-    erb(:'types/index')
+    erb(:"types/index")
 end
 
 #Show
@@ -31,13 +31,13 @@ end
 #Edit
 get '/types/:id/edit' do
     @type = Type(params[:id].to_i)
-    erb(:'types/edit')
+    erb(:"types/edit")
 end
 
 #Update
 post '/types/:id/delete' do
     Type.find(params[:id].to_i).delete()
-    redirect to '/types'
+    redirect to "/types"
 end
 
 
