@@ -10,7 +10,7 @@ get '/types' do
 end
 
 #Show
-get '/types' do
+get '/types/:id' do
     @type = Type.find(params[:id].to_i)
     @ebikes = @type.ebikes()
     erb(:"types/show")
