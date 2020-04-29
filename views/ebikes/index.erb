@@ -11,9 +11,9 @@
   </tr>
   <% @ebikes.each do |ebike| %>
   <tr>
-   <td><a href="/<%= ebike.id %> "><%= ebike.name %></a></td>
+   <td><a href="/ebikes/<%= ebike.id %> "><%= ebike.name %></a></td>
    <td><a><%= ebike.type().name %></a></td>
-   <td><a href="/<%= ebike.brand_id %>"><%= ebike.brand.name %></a></td>
+   <td><a href="/brands/<%= ebike.brand_id %>"><%= ebike.brand.name %></a></td>
    <td><a class="<% ebike.stock_status %> center"><%= ebike.stock_count %></td>
    <td>£<%= ebike.retail_price() %></td>
    <td>£<%= ebike.cost() %></td>

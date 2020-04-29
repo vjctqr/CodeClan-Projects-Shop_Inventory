@@ -55,6 +55,7 @@ class Ebike
         return Ebike.map_items(ebikes_data)
     end
 
+    #Update
     def update()
         sql = "UPDATE ebikes SET (
             name, 
@@ -68,8 +69,9 @@ class Ebike
         SqlRunner.run(sql, values)
     end
 
+    #Delete
     def delete()
-        sql = "DELETE FROM ebikes WHERE id = $1"
+        sql = "DELETE FROM ebikes WHERE id = $1";
         values = [@id]
         SqlRunner.run(sql, values)
     end

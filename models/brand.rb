@@ -29,13 +29,15 @@ class Brand
         brand = SqlRunner.run( sql, values ).first
         @id = brand['id'].to_i
     end
-
+    
+    #Read
     def self.all()
         sql = "SELECT * FROM brands"
         brands_data = SqlRunner.run(sql)
         return Brand.map_items(brands_data)
     end
 
+    #Update
     def update()
         sql = "UPDATE brands SET 
         (name, address, contact_number) = 
@@ -45,6 +47,7 @@ class Brand
         SqlRunner.run(sql, values)
     end
 
+    #Delete
     def delete()
         sql = "DELETE FROM brands where id = $1"
         values = [@id]

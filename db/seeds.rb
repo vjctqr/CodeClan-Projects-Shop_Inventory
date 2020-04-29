@@ -3,7 +3,6 @@ require_relative('../models/brand')
 require_relative('../models/type')
 require_relative('pry')
 
-Ebike.delete_all()
 Type.delete_all()
 Brand.delete_all()
 
