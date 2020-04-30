@@ -26,3 +26,19 @@ Filter the inventory list by manufacturer. For example, provide an option to vie
 Categorise your items. 
 Books might be categorised by genre (crime, horror, romance...) and cars might be categorised by type (SUV, coupé, hatchback...). 
 Provide an option to filter the inventory list by these categories.
+
+You also need the following gems installed
+
+gem install pg sinatra sinatra-contrib
+
+You need to have a database 
+
+createdb 
+
+Then run the table creating script
+
+psql -d shop_inventory -f db/shop_inventory.sql
+
+Run the following in the terminal and visit the browser at localhost:4567
+
+ruby app.rb
