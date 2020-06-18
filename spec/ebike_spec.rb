@@ -50,5 +50,6 @@ class TestEbike < Minitest::Test
         @ebike.buy_from_manufacturer(0)
         assert_equal(20, @ebike.stock_count)
     end
+
 end
 

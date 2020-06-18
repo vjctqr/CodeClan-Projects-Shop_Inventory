@@ -12,7 +12,7 @@ class Type
         @motor = options['motor']
     end
 
-    #Create
+    #(C)reate
     def save()
         sql = "INSERT INTO types (name, motor) VALUES ($1, $2) RETURNING id"
         values = [@name, @motor]
@@ -20,21 +20,21 @@ class Type
         @id = type['id'].to_i
     end
 
-    #Read
+    #(R)ead
     def self.all()
         sql = "SELECT * FROM types"
         types_data = SqlRunner.run(sql)
         return Type.map_items(types_data)
     end
 
-    #Update
+    #(U)pdate
     def update()
         sql = "UPDATE types SET (name, motor) = ($1, $2) WHERE id = $3;"
         values = [@name, @motor, @id]
         SqlRunner.run(sql, values)
     end
 
-    #Delete
+    #(D)elete
     def delete()
         sql = "DELETE FROM types WHERE id = $1"
         values = [@id]
