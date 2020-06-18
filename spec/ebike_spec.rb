@@ -10,9 +10,9 @@ class TestEbike < Minitest::Test
         @ebike = Ebike.new({
             "name" => "Tern GSD", 
             "type_id" => "eCargo",
+            "brand_id" => "Tern",
             "retail_price" => "3995", 
             "cost" => "3295", 
-            "brand_id" => "Tern", 
             "stock_count" => "5"
         })
     end
@@ -40,6 +40,9 @@ class TestEbike < Minitest::Test
         assert_equal(5, @ebike.stock_count)
     end
 
+    def test_stock_starts_at_zero()
+        assert_equal(0, @ebike.ebikes_sold)
+    end
 
 end
 
