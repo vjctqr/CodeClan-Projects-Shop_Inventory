@@ -19,7 +19,7 @@ get '/ebikes' do
 end
 
 #Create
-get '/ebikes' do
+post '/ebikes' do
   Ebike.new(params).save()
   redirect to '/ebikes'
  end
@@ -27,14 +27,14 @@ get '/ebikes' do
  #Show
  get '/ebikes/:id' do
    @ebikes = Ebike.find(params[:id].to_i)
-   erb(:ebikes/show)
+   erb(:"ebikes/show")
  end
 
  #Edit
  get '/ebikes/:id/edit' do
    @ebike = Ebike.find(params[:id].to_i)
    @brand = Brand.all()
-   erb(:'ebikes/edit')
+   erb(:"ebikes/edit")
  end
 
 #Update

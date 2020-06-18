@@ -19,7 +19,8 @@ class Ebike
         return Type.find(@type_id)
     end
 
-    def brand()
+    def brand() 
+        
         return Brand.find(@brand_id)
     end
 
