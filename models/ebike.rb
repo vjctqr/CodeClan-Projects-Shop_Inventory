@@ -3,16 +3,17 @@ require_relative("../db/sql_runner")
 class Ebike 
 
     attr_reader :id
-    attr_accessor :name, :retail_price, :cost, :type_id, :brand_id, :stock_count
+    attr_accessor :name, :type_id, :brand_id :retail_price, :cost, :stock_count, ebikes_sold
 
     def initialize(options)
         @id = options['id'].to_i if options['id']
         @name = options['name']
-        @retail_price = options['retail_price'].to_i
-        @cost = options['cost'].to_i
         @type_id = options['type_id'].to_i
         @brand_id = options['brand_id'].to_i
-        @stock_count = options["stock_count"].to_i    
+        @retail_price = options['retail_price'].to_i
+        @cost = options['cost'].to_i
+        @stock_count = options["stock_count"].to_i   
+        @ebikes_sold = options["ebikes_sold"].to_i 
     end 
 
     def type()
