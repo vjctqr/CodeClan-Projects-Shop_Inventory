@@ -20,9 +20,15 @@ class Ebike
         return Type.find(@type_id)
     end
 
-    def brand() 
-        
+    def brand()  
         return Brand.find(@brand_id)
+    end
+
+    def buy_from_manufacturer(ebikes)
+        if (ebikes > 0)
+            @stock_count += ebikes
+            update()
+        end
     end
 
     def stock_status()
@@ -31,6 +37,7 @@ class Ebike
         return "amber"
     end
 
+    # (C)reate
     def save()
         sql = "INSERT INTO ebikes 
         (
@@ -57,7 +64,7 @@ class Ebike
         return Ebike.map_items(ebikes_data)
     end
 
-    #Update
+    #(U)pdate
     def update()
         sql = "UPDATE ebikes SET (
             name, 
@@ -71,7 +78,7 @@ class Ebike
         SqlRunner.run(sql, values)
     end
 
-    #Delete
+    #(D)elete
     def delete()
         sql = "DELETE FROM ebikes WHERE id = $1";
         values = [@id]
