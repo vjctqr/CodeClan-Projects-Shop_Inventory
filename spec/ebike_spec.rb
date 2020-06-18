@@ -9,9 +9,9 @@ class TestEbike < Minitest::Test
     def setup
         @ebike = Ebike.new({
             "name" => "Tern GSD", 
+            "type_id" => "eCargo",
             "retail_price" => "3995", 
             "cost" => "3295", 
-            "type_id" => "eCargo",
             "brand_id" => "Tern", 
             "stock_count" => "5"
         })
