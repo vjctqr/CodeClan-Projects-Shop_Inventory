@@ -14,7 +14,16 @@ class Type
 
     #(C)reate
     def save()
-        sql = "INSERT INTO types (name, motor) VALUES ($1, $2) RETURNING id"
+        sql = "INSERT INTO types
+        (
+            name,
+            motor
+        )   
+            VALUES 
+        (
+            $1, $2
+        ) 
+            RETURNING id"
         values = [@name, @motor]
         type = SqlRunner.run(sql, values).first
         @id = type['id'].to_i

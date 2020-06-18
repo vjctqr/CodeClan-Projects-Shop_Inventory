@@ -13,6 +13,7 @@ class Brand
         @contact_number = options['contact_number']
     end
 
+    #(C)reate
     def save()
         sql = "INSERT INTO brands 
         (
@@ -30,14 +31,14 @@ class Brand
         @id = brand['id'].to_i
     end
     
-    #Read
+    #(R)ead
     def self.all()
         sql = "SELECT * FROM brands"
         brands_data = SqlRunner.run(sql)
         return Brand.map_items(brands_data)
     end
 
-    #Update
+    #(U)pdate
     def update()
         sql = "UPDATE brands SET 
         (name, address, contact_number) = 
@@ -47,7 +48,7 @@ class Brand
         SqlRunner.run(sql, values)
     end
 
-    #Delete
+    #(D)elete
     def delete()
         sql = "DELETE FROM brands where id = $1"
         values = [@id]
