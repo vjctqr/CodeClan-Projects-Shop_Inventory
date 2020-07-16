@@ -1,3 +1,38 @@
+<div>
+  <h2>eBikes</h2>
+  <a href="/ebikes/<%= @ebike.id %>/edit">Edit</a>
+  <form action="/ebikes/<%= @ebike.id %>/delete" method="post">
+  <input type="submit" value="Delete">
+  </form>
+</div>
+
+<table>
+<tr>
+<th>Name</th>
+<td><%= @ebike.name %></td>
+</tr>
+</table>
+
+<table>
+<tr>
+<th>Type</th>
+<td><a href="/type/<%= @ebike.type_id %>"><%= @ebike.type().print_name %></a></td>
+</tr>
+<tr>
+<th>Brand</th>
+<td><a href="/type/<%= @ebike.brand_id %>"><%= @ebike.brand().print_name %></a></td>
+</tr>
+</table>
+
+<table>
+<tr>
+ <form action="/ebikes/<%= @ebike.id %>/sell" method="post">
+<th><label for="buy-bikes">Buy from Manufacturer</label></th>
+<td><input type="number" min="0" name="bikes" id="buy-bikes"><input type="submit" value="Buy"></td>
+</tr>
+</table>
+
+
 <h1>eBike <%= @ebikes.name %></h1>
 
 <p>Type: <%= @ebikes.type %></p>
