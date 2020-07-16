@@ -25,11 +25,17 @@
 </table>
 
 <table>
-<tr>
- <form action="/ebikes/<%= @ebike.id %>/sell" method="post">
-<th><label for="buy-bikes">Buy from Manufacturer</label></th>
-<td><input type="number" min="0" name="bikes" id="buy-bikes"><input type="submit" value="Buy"></td>
-</tr>
+  <tr>
+    <form action="/ebikes/<%= @ebike.id %>/buy" method="post">
+      <th><label for="buy-bikes">Buy from Manufacturer</label></th>
+      <td><input type="number" min="0" name="bikes" id="buy-bikes"><input type="submit" value="Buy"></td>
+    </form>
+  </tr>
+  <tr>
+    <form action="/ebikes/<%= @ebike.id %>/sell" method="post">
+      <th><label for="sell-bikes">Sell to Customer</label></th>
+      <td><input type="number" min="0" name="bikes" id="sell-bikes"><input type="submit" value="Sell"></td>
+    </form>
 </table>
 
 
