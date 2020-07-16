@@ -38,11 +38,21 @@
     </form>
 </table>
 
-
-<h1>eBike <%= @ebikes.name %></h1>
-
-<p>Type: <%= @ebikes.type %></p>
-
-<p>Brand: <%= @ebikes.brand %></p>
+<table>
+  <tr>
+    <th scope="row">Buy Cost</th>
+    <th scope="row">Sell Price</th>
+    <th scope="row">Markup</th>
+    <th scope="row">Stock</th>
+    <th scope="row">Bikes Sold</th>
+  </tr>
+  <tr>
+    <td>£<%= @ebike.print_buy_cost() %></td>
+    <td>£<%= @ebike.print_sell_price() %></td>
+    <td>£<%= @ebike.print_markup() %></td>
+    <td class="<%= @ebike.stock_status() %> center"><%= @ebike.stock_count %></td>
+    <td><%= @ebike.bikes_sold %><%= "" if @ebike.is_bestseller?() %></td>
+  </tr>
+</table>
 
 
