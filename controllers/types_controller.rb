@@ -3,43 +3,44 @@ require('sinatra/contrib/all') if development?
 require_relative('../models/type.rb')
 also_reload('../models/*')
 
-
-#New
+# New
 get '/types/new' do
-    erb(:'types/new')
+  erb(:'types/new')
 end
 
-#Create
+# Create
 post '/types' do
-    Type.new(params).save()
-    redirect to "/types"
+  Type.new(params).save
+  redirect to '/types'
 end
 
-#Index
+# Index
 get '/types' do
-    @types = Type.all()
-    erb(:"types/index")
+  @types = Type.all
+  erb(:"types/index")
 end
 
-#Show
+# Show
 get '/types/:id' do
-    @type = Type.find(params[:id].to_i)
-    @ebikes = @type.ebikes()
-    erb(:"types/show")
+  @type = Type.find(params[:id].to_i)
+  @ebikes = @type.ebikes
+  erb(:"types/show")
 end
 
-#Edit
+# Edit
 get '/types/:id/edit' do
-    @type = Type(params[:id].to_i)
-    erb(:"types/edit")
+  @type = Type(params[:id].to_i)
+  erb(:"types/edit")
 end
 
-#Update
+# Update
+post '/types/:id' do
+  Type.new(params).update
+  redirect to '/types'
+end
+
+# Delete
 post '/types/:id/delete' do
-    Type.find(params[:id].to_i).delete()
-    redirect to "/types"
+  Type.find(params[:id].to_i).delete
+  redirect to '/types'
 end
-
-
-
-

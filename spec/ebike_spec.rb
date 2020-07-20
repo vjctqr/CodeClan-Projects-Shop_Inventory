@@ -40,5 +40,14 @@ class TestEbike < Minitest::Test
         assert_equal(5, @ebike.stock_count)
     end
 
+    def test_bikes_sold_start_from_zero()
+        assert_equal(0, @ebikes.bikes_sold)
+    end
+
+    def test_buy_from_manufacturer()
+        @ebike.buy_from_manufacturer(1)
+        @ebike.buy_from_manufacturer(2)
+        assert_equal(5, @ebike.stock_count)
+    end
 
 end
