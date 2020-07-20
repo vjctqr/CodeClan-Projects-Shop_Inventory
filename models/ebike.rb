@@ -22,6 +22,25 @@ class Ebike
     Brand.find(@brand_id)
   end
 
+  def buy_from_manufacturer(bikes)
+    if bikes > 0
+      @stock_count += bikes
+      update
+    end
+  end
+
+  def enough_stock?(bikes)
+    @stock_count >= bikes
+  end
+
+  def sell_to_customer(bikes)
+    if bikes > 0 && enough_stock?(bikes)
+      @stock_count -= bikes
+      @bikes_sold += bikes
+      update
+    end
+  end
+
   def stock_status
     return 'green' if @stock_count >= 5
     return 'red' if @stock_count == 0
@@ -81,8 +100,7 @@ class Ebike
   end
 
   def self.delete_all
-    sql = 'DELETE FROM ebikes'
-    SqlRunner.run(sql)
+    SqlRunner.run('DELETE FROM ebikes;')
   end
 
   def self.find(id)

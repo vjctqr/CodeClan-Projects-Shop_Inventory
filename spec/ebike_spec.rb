@@ -42,4 +42,3 @@ class TestEbike < Minitest::Test
 
 
 end
-
