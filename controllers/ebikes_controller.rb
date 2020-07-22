@@ -52,3 +52,21 @@ post '/ebikes/:id/delete' do
   Ebike.find(params[:id].to_i).delete
   redirect to '/ebikes'
 end
+
+post '/ebikes/:id/buy' do
+  ebike = Ebike.find(params[:id].to_i)
+  ebike.buy_from_manufacturer(params[:bikes].to_i)
+  redirect to "/ebikes/#{params[:id]}"
+end
+
+post '/books/:id/sell' do
+  ebike = Ebike.find(params[:id].to_i)
+  ebike.sell_from_manufacturer(params[:bikes].to_i)
+  redirect to "/ebikes/#{params[:id]}"
+end
+
+get '/ebikes/filter/:genre' do
+  @type = params[:type]
+  @ebike = Ebike.filter_by_type(@type)
+  erb(:"ebikes/index")
+end

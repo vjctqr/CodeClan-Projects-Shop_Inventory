@@ -1,7 +1,7 @@
-class WhereWithAl
+class Wherewithal
   def self.in_pounds(amount_in_pounds)
     return '0.00' if amount_in_pounds == 0
-    return '-' + WhereWithAl.in_pounds(-amount_in_pounds) if amount_in_pounds < 0
+    return '-' + Wherewithal.in_pounds(-amount_in_pounds) if amount_in_pounds < 0
 
     pounds = amount_in_pounds / 100
     remainder = amount_in_pounds % 100
