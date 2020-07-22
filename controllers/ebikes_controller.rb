@@ -70,3 +70,9 @@ get '/ebikes/filter/:genre' do
   @ebike = Ebike.filter_by_type(@type)
   erb(:"ebikes/index")
 end
+
+get '/ebikes/:column' do
+  @column = params[:column]
+  @ebike = Ebike.all(@column)
+  erb(:"ebikes/index")
+end
