@@ -3,44 +3,44 @@ require('sinatra/contrib/all') if development?
 require_relative('../models/brand')
 also_reload('../models/*')
 
-#New
+# New
 get '/brands/new' do
-    erb(:"brands/new")
+  erb(:"brands/new")
 end
 
-#Create
+# Create
 post '/brands' do
-    Brand.new(param).save()
-    redirect to "/brands"
+  Brand.new(param).save
+  redirect to '/brands'
 end
 
-#Index
+# Index
 get '/brands' do
-    @brands = Brand.all()
-    erb(:"brands/index")
+  @brands = Brand.all
+  erb(:"brands/index")
 end
 
-#Show
+# Show
 get '/brands/:id' do
-    @brand = Brand.find(params[:id].to_i)
-    @brands = @brand.ebikes()
-    erb(:"brands/show")
+  @brand = Brand.find(params[:id].to_i)
+  @brands = @brand.ebikes
+  erb(:"brands/show")
 end
 
-#Edit
+# Edit
 get '/brands/:id/edit' do
-    @brand = Brand.find(params[:id].to_i)
-    erb(:"brands/edit")
+  @brand = Brand.find(params[:id].to_i)
+  erb(:"brands/edit")
 end
 
-#Update
+# Update
 post '/brands/:id' do
-    Brands.new(params).update()
-    redirect to "/brands"
+  Brands.new(params).update
+  redirect to '/brands'
 end
 
-#Delete
+# Delete
 post '/brands/:id/delete' do
-    Brands.find(params[:id].to_i).delete()
-    redirect to "/brands"
+  Brands.find(params[:id].to_i).delete
+  redirect to '/brands'
 end

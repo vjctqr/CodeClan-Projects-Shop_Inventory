@@ -1,4 +1,4 @@
-require_relative('pry')
+require('pry')
 require_relative('../models/ebike')
 require_relative('../models/brand')
 require_relative('../models/type')
